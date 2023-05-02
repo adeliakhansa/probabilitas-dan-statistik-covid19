@@ -8,9 +8,14 @@ Pandas: library Python untuk manipulasi dan analisis data.
 Numpy: library Python untuk komputasi numerik.
 Scikit-learn: library Python untuk machine learning dan data mining.
 Matplotlib: library Python untuk membuat visualisasi data.
-Untuk menginstal library-library tersebut, anda bisa menggunakan pip (Python package manager) dengan menjalankan perintah berikut di terminal:
+csv : library untuk mengolah data csv
 
+
+
+Untuk menginstal library-library tersebut, anda bisa menggunakan pip (Python package manager) dengan menjalankan perintah berikut di terminal:
 pip install flask pandas numpy scikit-learn matplotlib
+
+
 
 Pastikan telah menginstal Python di komputer anda sebelum menjalankan website ini.
 Setelah menginstal library yang dibutuhkan, anda bisa menjalankan website dengan mengeksekusi file test.py di terminal menggunakan perintah ctrl + Alt + N
