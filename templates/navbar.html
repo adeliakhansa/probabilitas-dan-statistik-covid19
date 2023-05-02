@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, user-scalable=0">
+
+    <!-- SCRIPT -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-939WWMZFE1');
+    </script>
+    <!-- SCRIPT -->
+
+    <title> Covid-19</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css" rel="stylesheet">
+    <link rel="icon" href="" sizes="32x32" />
+    <link rel="icon" href="" sizes="192x192" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Style -->
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
+
+    <!-- jQuery and DataTables libraries -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <!-- <div class="container d-none d-lg-block">
+        <div class="row py-2 justify-content-end">
+            <span class="px-3">LAYANAN DARURAT COVID-19 </span>
+            <div class="px-3">
+                <img class="mb-1" src="https://corona.jakarta.go.id/img/logo/red-phone.svg" alt=""><span style="color: #BF1212"> 112</span>
+            </div>
+            <div class="px-3">
+                <img class="mb-1" src="https://corona.jakarta.go.id/img/logo/red-phone.svg" alt=""><span style="color: #BF1212"> 0813 8837 6955</span>
+            </div>
+        </div>
+    </div> -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">         
+        <a id="nav-logo-dki-top" class="navbar-brand" href="{{ url_for('home') }}"></a>
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="col-md-10">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == url_for('home') %}active{% endif %}" href="{{ url_for('home') }}">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('data') }}">Data</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('prediksi') }}">Prediksi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('probability') }}">Probabilitas</a>
+                        </li>
+                        <li class="nav-item ml-auto">
+                            <div class="container d-none d-lg-block">
+                                <div class="row py-2">
+                                    <span class="px-3">LAYANAN DARURAT COVID-19 </span>
+                                    <div class="px-3">
+                                        <img class="mb-1" src="https://corona.jakarta.go.id/img/logo/red-phone.svg" alt=""><span style="color: #BF1212"> 112</span>
+                                    </div>
+                                    <div class="px-3">
+                                        <img class="mb-1" src="https://corona.jakarta.go.id/img/logo/red-phone.svg" alt=""><span style="color: #BF1212"> 0813 8837 6955</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </nav>
+    <!-- NAVBAR -->
+
+
+    <!-- CONTENT -->
+    {% block content %}{% endblock %}
+    <!-- CONTENT -->
+
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="d-flex flex-column"></div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="text-small text-muted">
+                    Adelia Khansa Ristiaputri | Adinda Dinia Alexandra | Dhia Rafifah Thifal
+                    </p>
+                </div>
+                <div class="col-md-12">
+                    <p class="text-small text-muted" style="text-align:center;"> © S1 Teknik Informatika Offering A | Universitas Negeri Malang </p>
+                </div>
+            </div>
+        </div>
+            <a id="back-to-top" href="#" class="btn back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><img class="img-fluid" src="https://corona.jakarta.go.id/img/logo/up-chevron.svg" alt="" style="max-width: 1rem;height: 2rem;"></a>
+           
+    </footer>
+    <!-- FOOTER -->
+
+</body>
+</html>
+
+<!-- SCRIPT -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Readmore.js/2.2.1/readmore.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://widget.kominfo.go.id/gpr-widget-kominfo.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function() {
+    // Calculating the distance from the top of the page to the initial position of the navbar, and store it in a variable
+    var navbarOffest = $(".navbar").offset().top;
+
+    $(window).on("scroll", function() {
+        var navbarHeight = $(".navbar").outerHeight();
+        if ($(window).scrollTop() >= navbarOffest) {
+        $(".navbar").addClass("fixed-top");
+        $("body").css("padding-top", navbarHeight + "px");
+        } else {
+        $(".navbar").removeClass("fixed-top");
+        $("body").css("padding-top", "0");
+        }
+    });
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        $(".owl-carousel").owlCarousel({
+            items:4,
+            loop:true,
+            margin:10,
+            autoPlay:true,
+            autoplayTimeout:500,
+            autoplayHoverPause:true
+        });
+    });
+</script>
+
+<script>
+$(document).ready(function(){
+    $(".scrollTo").on('click', function(event) {
+        if (this.hash !== "") {
+            event.preventDefault();
+            var hash = this.hash;
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 800, function(){
+                window.location.hash = hash;
+            });
+        } 
+    });
+});
+</script>
+<script>
+    $(document).ready(function() {
+    // Calculating the distance from the top of the page to the initial position of the navbar, and store it in a variable
+    var navbarOffest = $(".navbar").offset().top;
+
+    $(window).on("scroll", function() {
+        var navbarHeight = $(".navbar").outerHeight();
+
+        if ($(window).scrollTop() >= navbarOffest) {
+        $(".navbar").addClass("fixed-top");
+        $("body").css("padding-top", navbarHeight + "px");
+        } else {
+        $(".navbar").removeClass("fixed-top");
+        $("body").css("padding-top", "0");
+        }
+    });
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        $(".owl-carousel").owlCarousel({
+            items:4,
+            loop:true,
+            margin:10,
+            autoPlay:true,
+            autoplayTimeout:500,
+            autoplayHoverPause:true
+        });
+    });
+</script>
+<script>
+$(document).ready(function(){
+    $(".scrollTo").on('click', function(event) {
+        if (this.hash !== "") {
+            event.preventDefault();
+            var hash = this.hash;
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 800, function(){
+                window.location.hash = hash;
+            });
+        } 
+    });
+});
+</script>
+<script>
+    $('.showmore').each(function(){
+    var words = $(this).html();
+    var maxWords = 200;        
+        if(words.length > maxWords){
+            html = words.substr(0, maxWords)+'<span id="titik">..</span>'+'<span class="more_text" style="display:none;">'+words.substr(maxWords,words.length)+'</span>'+' <a href="#" class="read_more">[Selengkapnya]</a>'
+            $(this).html(html)            
+            $(this).find('a.read_more').click(function(event){
+                $(this).toggleClass("less");
+                event.preventDefault();
+                if($(this).hasClass("less")){
+                    $(this).html(" [Sembunyikan]")
+                    $(this).parent().find("#titik").hide();
+                    $(this).parent().find(".more_text").show();
+                }else{
+                    $(this).html(" [Selengkapnya]")
+                    $(this).parent().find("#titik").show();
+                    $(this).parent().find(".more_text").hide();
+                }
+            })              
+        }
+    });
+</script>
+<script>    
+    $(document).ready(function(){
+        $(".agregator").owlCarousel({
+            items:4,
+            loop:true,
+            margin:10,
+            autoPlay:true,
+            autoplayTimeout:500,
+            autoplayHoverPause:true
+        });
+    });
+    $(document).ready(function(){
+        $(".paket").owlCarousel({
+            items:2,
+            loop:true,
+            pagination: false,
+            margin:10,
+            autoPlay:true,
+            autoplayTimeout:2000,
+            autoplayHoverPause:true
+        });
+    });
+    $(document).ready(function(){
+        $(".peta").owlCarousel({
+            items:1,
+            loop:true,
+            pagination: true,
+            margin:10,
+            autoPlay:true,
+            autoplayTimeout:2000,
+            autoplayHoverPause:true
+        });
+    });
+    $(document).ready(function(){
+        $(".slider").owlCarousel({
+            items:3,
+            loop:true,
+            pagination: true,
+            margin:10,
+            autoPlay:true,
+            autoplayTimeout:2000,
+            autoplayHoverPause:true
+        });
+    });
+    $(document).ready(function(){
+        $(".v_slider").owlCarousel({
+            items:3,
+            loop:true,
+            pagination: false,
+            margin:10,
+            autoPlay:true,
+            autoplayTimeout:2000,
+            autoplayHoverPause:true
+        });
+        $(".slider-upaya").owlCarousel({
+            items:3,
+            loop:true,
+            pagination: true,
+            // margin:10,
+            autoPlay:true,
+            autoplayTimeout:2000,
+            autoplayHoverPause:true
+        });
+    });
+    $(document).ready(function(){
+        $(".slider2").owlCarousel({
+            items:4,
+            loop:true,
+            pagination: true,
+            // margin:10,
+            autoPlay:true,
+            autoplayTimeout:2000,
+            autoplayHoverPause:true
+        });
+    });
+    $(document).ready(function(){
+        $(".video-slider").owlCarousel({
+            items:3,
+            loop:true,
+            margin:10,
+            autoPlay:true,
+            autoplayTimeout:2000,
+            autoplayHoverPause:true,
+            navigationText: ["◀ Left <strong>arrow</strong>","Right <strong>arrow</strong> ▶"]
+        });
+    });
+    $(document).ready(function(){
+        $(".tab-slide").owlCarousel({
+            items: 3,
+            // stagePadding: 50,
+            loop:true,
+            margin:10,
+            nav: false
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+
+        var carousel = $(".v_slider_x");
+
+        carousel.owlCarousel({
+        items : 3,
+        autoPlay:true,
+        lazyLoad : true,
+        // navigation : true,
+        afterAction: function(el){
+        //remove class active
+        this
+        .$owlItems
+        .removeClass('active-slide')
+
+        //add class active
+        this
+        .$owlItems //owl internal $ object containing items
+        .eq(this.currentItem + 1)
+        .addClass('active-slide')    
+        } 
+        });
+    });
+</script>
+<script>
+    $('.tarkikComandSlider').slick({
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        dots: true,
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        $('#aktivitas-ppkm').select2();
+        $('#select_subsector b[role="presentation"]').hide();
+        $('#select_subsector .select2-selection__arrow').append('<i class="fa fa-angle-down"></i>');
+    });
+</script>
+<!-- SCRIPT -->

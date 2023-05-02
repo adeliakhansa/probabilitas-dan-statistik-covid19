@@ -1,0 +1,53 @@
+<style>
+    table.data {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 1rem;
+      background-color: transparent;
+      text-align: left;
+      border: 1px solid #dee2e6;
+      color: #212529;
+    }
+
+    table.data th,
+    table.data td {
+      padding: 0.75rem;
+      vertical-align: top;
+      border-top: 1px solid #dee2e6;
+    }
+
+    table.data th {
+      font-weight: bold;
+      border-bottom: 2px solid #dee2e6;
+    }
+</style>
+
+{% extends "navbar.html" %}
+{% block content %}
+
+<div class="d-none d-lg-block" method="POST" action="/probability">
+    <section class="bg-grey" id="informasi">
+    <div class="container py-5">
+        <div class="row">            
+        <div class="col-md-8">
+            <div style="position: relative;font-size: 45px;">
+            <h1>PROBABILITAS COVID-19</h1>
+            <h1><span class="title-blue px-2">PROVINSI DI INDONESIA</span></h1>
+            </div>
+        </div>
+        <div class="col-md-4">
+        </div>
+        </div>
+        <div class="py-3 d-none d-lg-block">
+        <div class="card card-shadow my-3 py-3" style="color: #000;border-radius:20px;">
+        <div class="container" style="padding-top: 20px; padding-bottom: 20px;">
+            {% for table in tables %}
+            {{ table|safe }}
+            {% endfor %}
+        </div>
+        </div>
+        </div>
+    </div>
+    </section>
+</div>
+{% endblock %}

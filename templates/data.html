@@ -1,0 +1,71 @@
+{% extends "navbar.html" %}
+
+<!-- CONTENT -->
+{% block content %}
+
+<div class="d-none d-lg-block bg-dark"></div>
+<section class="bg-grey" id="informasi">
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-md-6 ">
+                <div style="position: relative;font-size: 30px;">
+                    <h1>DATA COVID-19</h1>
+                    <h1><span class="title-blue px-2">PROVINSI DI INDONESIA</span></h1>
+                </div>
+            </div>
+            <div class="col-md-4">          
+            </div>
+        </div>
+        <div class="py-3 d-none d-lg-block">
+        </div>
+        <div class="card card-shadow my-3 py-3" style="color: #000;border-radius:20px;">
+
+        <!-- DATA -->
+        <section class="vh-100">
+            <div class="container py-5 h-100">
+            <p class="small">Sumber Data: <a href="https://onedrive.live.com/edit.aspx?resid=266B9468D404F722!45441&ithint=file%2cxlsx&authkey=!ANZZM9ckdSjt5YE">DATA ASLI</a></p>
+                <div class="row justify-content-center align-items-center h-100">                        
+                    <table id="myTable" class="row-border stripe stripe hover compact" style="width: 100%; margin: 20px;">
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Provinsi</th>
+                                <th>Kasus Baru</th>
+                                <th>Kasus Aktif</th>
+                                <th>Kasus Kematian</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <!-- SHOW DATA -->
+                            {% for row in data %}
+                                <tr>
+                                    <td>{{ row['tanggal'] }}</td>
+                                    <td>{{ row['provinsi'] }}</td>
+                                    <td>{{ row['kasus_baru'] }}</td>
+                                    <td>{{ row['kasus_aktif'] }}</td>
+                                    <td>{{ row['kasus_kematian'] }}</td>
+                                </tr>
+                            {% endfor %}
+                            <!-- SHOW DATA -->
+
+                        </tbody>
+                    </table>
+                    
+                    <!-- jQuery DataTables -->
+                    <script>
+                        $(document).ready( function () {
+                            $('#myTable').DataTable();
+                        } );
+                    </script>
+                    <!-- jQuery DataTables -->
+        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+<!-- DATA -->
+
+{% endblock %}

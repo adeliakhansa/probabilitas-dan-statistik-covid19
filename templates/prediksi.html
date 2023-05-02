@@ -1,0 +1,137 @@
+{% extends "navbar.html" %}
+
+<!-- CONTENT -->
+{% block content %}
+
+<div class="d-none d-lg-block"></div>
+<section class="bg-grey" id="informasi">
+  <div class="container py-5">
+    <div class="row">            
+      <div class="col-md-8">
+        <div style="position: relative;font-size: 45px;">
+          <h1>PREDIKSI COVID-19</h1>
+          <h1><span class="title-blue px-2">PROVINSI DI INDONESIA</span></h1>
+        </div>
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
+    <div class="py-3 d-none d-lg-block">
+    </div>
+    <div class="card card-shadow my-3 py-3" style="color: #000;border-radius:20px;">
+      <div class="container" style="padding-top: 20px; padding-bottom: 20px;">
+
+        <form role="form" method="POST" action="/predict">
+        <div class="row mb-3">
+          <label for="provinsi" class="col-sm-3 col-form-label">Provinsi:</label>
+          <div class="col-sm-9">
+            <select class="form-select" name="provinsi" id="provinsi">
+              <option selected>Pilih Provinsi</option>
+              <option value="Aceh">Aceh</option>
+              <option value="Bali">Bali</option>
+              <option value="Bangka Belitung">Bangka Belitung</option>
+              <option value="Banten">Banten</option>
+              <option value="Bengkulu">Bengkulu</option>
+              <option value="Gorontalo">Gorontalo</option>
+              <option value="Jakarta">Jakarta</option>
+              <option value="Jambi">Jambi</option>
+              <option value="Jawa Barat">Jawa Barat</option>
+              <option value="Jawa Tengah">Jawa Tengah</option>
+              <option value="Jawa Timur">Jawa Timur</option>
+              <option value="Kalimantan Barat">Kalimantan Barat</option>
+              <option value="Kalimantan Selatan">Kalimantan Selatan</option>
+              <option value="Kalimantan Tengah">Kalimantan Tengah</option>
+              <option value="Kalimantan Timur">Kalimantan Timur</option>
+              <option value="Kalimantan Utara">Kalimantan Utara</option>
+              <option value="Kepulauan Riau">Kepulauan Riau</option>
+              <option value="Lampung">Lampung</option>
+              <option value="Maluku">Maluku</option>
+              <option value="Maluku Utara">Maluku Utara</option>
+              <option value="Nusa Tenggara Barat">Nusa Tenggara Barat</option>
+              <option value="Nusa Tenggara Timur">Nusa Tenggara Timur</option>
+              <option value="Papua">Papua</option>
+              <option value="Papua Barat">Papua Barat</option>
+              <option value="Riau">Riau</option>
+              <option value="Sulawesi Barat">Sulawesi Barat</option>
+              <option value="Sulawesi Selatan">Sulawesi Selatan</option>
+              <option value="Sulawesi Tengah">Sulawesi Tengah</option>
+              <option value="Sulawesi Tenggara">Sulawesi Tenggara</option>
+              <option value="Sulawesi Utara">Sulawesi Utara</option>
+              <option value="Sumatera Barat">Sumatera Barat</option>
+              <option value="Sumatera Selatan">Sumatera Selatan</option>
+              <option value="Sumatera Utara">Sumatera Utara</option>
+              <option value="Yogyakarta">Yogyakarta</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="tanggal" class="col-sm-3 col-form-label">Tanggal:</label>
+          <div class="col-sm-9">
+            <input type="text" name="tanggal" id="tanggal" placeholder="mm/dd/yyyy" required class="form-control">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="kasus_baru" class="col-sm-3 col-form-label">Jumlah Kasus Baru:</label>
+          <div class="col-sm-9">
+            <input type="number" name="kasus_baru" id="kasus_baru" required class="form-control">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="kasus_aktif" class="col-sm-3 col-form-label">Jumlah Kasus Aktif:</label>
+          <div class="col-sm-9">
+            <input type="number" name="kasus_aktif" id="kasus_aktif" required class="form-control">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="kasus_kematian" class="col-sm-3 col-form-label">Jumlah Kasus Kematian:</label>
+          <div class="col-sm-9">
+            <input type="number" name="kasus_kematian" id="kasus_kematian" required class="form-control">
+          </div>
+        </div>
+        <input type="submit" value="Predict" class="btn btn-info btn-block">
+        
+
+        {% if result %}
+        <div class="card card-shadow my-3 py-3 d-flex align-items-end" style="color: #000;border-radius:20px;">
+          <div class="container text-center" style="padding-top: 20px; padding-bottom: 20px;" id="output">
+            <h4>Prediksi di <b>{{ result['provinsi'] }}</b> pada <b>{{ result['tanggal'] }}:</b></h4>
+            <ul>
+              <p>Jumlah Kasus Baru: {{ result['kasus_baru'] }}</p>
+              <p>Jumlah Kasus Aktif: {{ result['kasus_aktif'] }}</p>
+              <p>Jumlah Kasus Kematian: {{ result['kasus_kematian'] }}</p>
+              <p>Tingkat Persentase Kematian: {{ result ['persentase_kematian'] }}%</p>
+              <p>Error Rate: {{ result ['akurasi_kematian'] }} , Presisi: {{ result['precision'] }} , Recall : {{ result['recall'] }}</p>
+              <p>F1 Score : {{ result ['f1'] }}</p>
+              <!-- <p>threshold : {{ result ['threshold'] }}</p> -->
+            </ul>
+          </div>
+          <input type="reset" value="Reset" class="btn btn-danger" style="position: absolute; bottom: 10px; right: 10px;" id="reset-btn">
+        </div>
+
+        <script>
+         const resetButton = document.querySelector("input[type='reset']");
+          resetButton.addEventListener("click", () => {
+            const output = document.querySelector("#output");
+            output.innerHTML = "";
+          });
+
+          // sembunyikan tombol reset saat halaman dimuat
+          // document.getElementById("reset-btn").style.display = "none";
+
+        // tambahkan event listener pada tombol "Prediksi"
+        document.querySelector("#prediksi-btn").addEventListener("click", function() {
+          // tampilkan tombol reset
+          document.getElementById("reset-btn").style.display = "block";
+        });
+
+        </script>
+        
+        {% endif %}
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
